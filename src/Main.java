@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author andgz
- */
+import java.awt.Dialog;
+import java.util.ArrayList;
+
+
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -14,6 +10,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -25,11 +22,167 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jf_agregar = new javax.swing.JFrame();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jt_nombre = new javax.swing.JTextField();
+        jt_poder = new javax.swing.JTextField();
+        jt_debil = new javax.swing.JTextField();
+        jt_fuerza = new javax.swing.JFormattedTextField();
+        jt_agilM = new javax.swing.JFormattedTextField();
+        jt_agilF = new javax.swing.JFormattedTextField();
+        jt_hp = new javax.swing.JFormattedTextField();
+        Agregar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        cb_universo = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         bt_agregar = new javax.swing.JButton();
         bt_listado = new javax.swing.JButton();
         bt_simu = new javax.swing.JButton();
+
+        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel2.setText("Nombre");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel3.setText("Poder");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel4.setText("Debilidad");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel5.setText("Fuerza");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel7.setText("Agilidad mental");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel8.setText("Agilidad fisica");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel9.setText("HP");
+
+        jt_fuerza.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
+
+        jt_agilM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
+
+        jt_agilF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
+
+        jt_hp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
+
+        Agregar.setBackground(new java.awt.Color(102, 102, 255));
+        Agregar.setText("Agregar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel10.setText("Universo");
+
+        cb_universo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marvel", "Capcom", "Midway", "DC" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jt_nombre)
+                    .addComponent(jt_poder, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jt_debil)
+                    .addComponent(jt_fuerza))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jt_agilF, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jt_agilM, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jt_hp, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(cb_universo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Agregar)
+                .addGap(240, 240, 240))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jt_agilF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jt_poder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jt_agilM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jt_debil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jt_hp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jt_fuerza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(cb_universo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(Agregar)
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout jf_agregarLayout = new javax.swing.GroupLayout(jf_agregar.getContentPane());
+        jf_agregar.getContentPane().setLayout(jf_agregarLayout);
+        jf_agregarLayout.setHorizontalGroup(
+            jf_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jf_agregarLayout.setVerticalGroup(
+            jf_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +194,11 @@ public class Main extends javax.swing.JFrame {
 
         bt_agregar.setBackground(new java.awt.Color(102, 102, 255));
         bt_agregar.setText("Agregar");
+        bt_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_agregarActionPerformed(evt);
+            }
+        });
 
         bt_listado.setBackground(new java.awt.Color(102, 102, 255));
         bt_listado.setText("Listado");
@@ -74,9 +232,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
                 .addComponent(bt_agregar)
-                .addGap(56, 56, 56)
+                .addGap(47, 47, 47)
                 .addComponent(bt_listado)
-                .addGap(43, 43, 43)
+                .addGap(52, 52, 52)
                 .addComponent(bt_simu)
                 .addGap(70, 70, 70))
         );
@@ -94,6 +252,29 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarActionPerformed
+        jf_agregar.pack();
+        jf_agregar.setLocationRelativeTo(this);
+        jf_agregar.setVisible(true);
+    }//GEN-LAST:event_bt_agregarActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        Personaje p = new Personaje(jt_nombre.getText(), jt_poder.getText(), jt_debil.getText(), (String)cb_universo.getSelectedItem(),
+                Integer.parseInt(jt_fuerza.getText()), Integer.parseInt(jt_agilF.getText()),
+                Integer.parseInt(jt_agilM.getText()), Integer.parseInt(jt_hp.getText()));
+        
+        personajes.add(p);
+        
+        jt_nombre.setText("");
+        jt_poder.setText("");
+        jt_debil.setText("");
+        jt_fuerza.setText("");
+        jt_agilF.setText("");
+        jt_agilM.setText("");
+        jt_hp.setText("");
+        System.out.println(personajes);
+    }//GEN-LAST:event_AgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,10 +312,30 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar;
     private javax.swing.JButton bt_agregar;
     private javax.swing.JButton bt_listado;
     private javax.swing.JButton bt_simu;
+    private javax.swing.JComboBox<String> cb_universo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JFrame jf_agregar;
+    private javax.swing.JFormattedTextField jt_agilF;
+    private javax.swing.JFormattedTextField jt_agilM;
+    private javax.swing.JTextField jt_debil;
+    private javax.swing.JFormattedTextField jt_fuerza;
+    private javax.swing.JFormattedTextField jt_hp;
+    private javax.swing.JTextField jt_nombre;
+    private javax.swing.JTextField jt_poder;
     // End of variables declaration//GEN-END:variables
+    ArrayList <Personaje> personajes = new ArrayList();
 }
