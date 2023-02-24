@@ -1,7 +1,9 @@
 
-import java.awt.Dialog;
 import java.util.ArrayList;
-
+import javax.swing.DefaultListModel;
+import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class Main extends javax.swing.JFrame {
 
@@ -41,6 +43,16 @@ public class Main extends javax.swing.JFrame {
         Agregar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         cb_universo = new javax.swing.JComboBox<>();
+        jd_listar = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_personajes = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_lista = new javax.swing.JList<>();
+        popup = new javax.swing.JPopupMenu();
+        pm_listar = new javax.swing.JMenuItem();
+        pm_modificar = new javax.swing.JMenuItem();
+        pm_eliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         bt_agregar = new javax.swing.JButton();
@@ -184,6 +196,81 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jd_listar.setBackground(new java.awt.Color(255, 51, 51));
+
+        jPanel3.setBackground(new java.awt.Color(255, 51, 51));
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Personajes");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Marvel");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Capcom");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Midway");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("DC");
+        treeNode1.add(treeNode2);
+        jt_personajes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_personajes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_personajesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jt_personajes);
+
+        jl_lista.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jl_lista);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_listarLayout = new javax.swing.GroupLayout(jd_listar.getContentPane());
+        jd_listar.getContentPane().setLayout(jd_listarLayout);
+        jd_listarLayout.setHorizontalGroup(
+            jd_listarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_listarLayout.setVerticalGroup(
+            jd_listarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pm_listar.setText("Listar");
+        pm_listar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_listarMouseClicked(evt);
+            }
+        });
+        pm_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pm_listarActionPerformed(evt);
+            }
+        });
+        popup.add(pm_listar);
+
+        pm_modificar.setText("Modificar");
+        popup.add(pm_modificar);
+
+        pm_eliminar.setText("Eliminar");
+        popup.add(pm_eliminar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
@@ -202,6 +289,11 @@ public class Main extends javax.swing.JFrame {
 
         bt_listado.setBackground(new java.awt.Color(102, 102, 255));
         bt_listado.setText("Listado");
+        bt_listado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_listadoActionPerformed(evt);
+            }
+        });
 
         bt_simu.setBackground(new java.awt.Color(102, 102, 255));
         bt_simu.setText("Simulacion de batalla");
@@ -260,12 +352,36 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_agregarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        Personaje p = new Personaje(jt_nombre.getText(), jt_poder.getText(), jt_debil.getText(), (String)cb_universo.getSelectedItem(),
+        Personaje p = new Personaje(jt_nombre.getText(), jt_poder.getText(), jt_debil.getText(), (String) cb_universo.getSelectedItem(),
                 Integer.parseInt(jt_fuerza.getText()), Integer.parseInt(jt_agilF.getText()),
                 Integer.parseInt(jt_agilM.getText()), Integer.parseInt(jt_hp.getText()));
-        
+
         personajes.add(p);
-        
+
+        String univ = (String) cb_universo.getSelectedItem();
+        DefaultTreeModel m = (DefaultTreeModel) jt_personajes.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+
+        if (univ == "Marvel") {
+            DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(0);
+            DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
+            universo.add(nodo_personaje);
+        } else if (univ == "Capcom") {
+            DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(1);
+            DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
+            universo.add(nodo_personaje);
+        } else if (univ == "Midway") {
+            DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(2);
+            DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
+            universo.add(nodo_personaje);
+        } else if (univ == "DC") {
+            DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(3);
+            DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
+            universo.add(nodo_personaje);
+        }
+
+        m.reload();
+
         jt_nombre.setText("");
         jt_poder.setText("");
         jt_debil.setText("");
@@ -273,8 +389,58 @@ public class Main extends javax.swing.JFrame {
         jt_agilF.setText("");
         jt_agilM.setText("");
         jt_hp.setText("");
-        System.out.println(personajes);
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void bt_listadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listadoActionPerformed
+        jd_listar.pack();
+        jd_listar.setLocationRelativeTo(this);
+        jd_listar.setVisible(true);
+    }//GEN-LAST:event_bt_listadoActionPerformed
+
+    private void jt_personajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_personajesMouseClicked
+        String lista = "";
+        if (SwingUtilities.isRightMouseButton(evt)) {
+            popup.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+        int row = jt_personajes.getClosestRowForLocation(evt.getX(), evt.getY());
+        jt_personajes.setSelectionRow(row);
+        Object obj = jt_personajes.getSelectionPath().getLastPathComponent();
+        nodo_seleccionado = (DefaultMutableTreeNode) obj;
+    }//GEN-LAST:event_jt_personajesMouseClicked
+
+    private void pm_listarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_listarMouseClicked
+        DefaultListModel modelo = (DefaultListModel) jl_lista.getModel();
+        DefaultTreeModel treeMod = (DefaultTreeModel) jt_personajes.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) treeMod.getRoot();
+
+//        int row = jt_personajes.getClosestRowForLocation(evt.getX(), evt.getY());
+//        jt_personajes.setSelectionRow(row);
+//        Object obj = jt_personajes.getSelectionPath().getLastPathComponent();
+//        nodo_seleccionado = (DefaultMutableTreeNode) obj;
+
+        if (nodo_seleccionado.getUserObject() instanceof Personaje) {
+            System.out.println("Personaje");
+        } else if (!nodo_seleccionado.isRoot()) {
+            modelo.addElement("damn");
+        }
+        
+        jl_lista.setModel(modelo);
+    }//GEN-LAST:event_pm_listarMouseClicked
+
+    private void pm_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_listarActionPerformed
+//        DefaultListModel modelo = (DefaultListModel) jl_lista.getModel();
+//        DefaultTreeModel treeMod = (DefaultTreeModel) jt_personajes.getModel();
+//        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) treeMod.getRoot();
+//
+//
+//        if (nodo_seleccionado.getUserObject() instanceof Personaje) {
+//            System.out.println("Personaje");
+//        } else if (!nodo_seleccionado.isRoot()) {
+//            modelo.addElement("damn");
+//        }
+//        
+//        jl_lista.setModel(modelo);
+    }//GEN-LAST:event_pm_listarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,14 +494,26 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JDialog jd_listar;
     private javax.swing.JFrame jf_agregar;
+    private javax.swing.JList<String> jl_lista;
     private javax.swing.JFormattedTextField jt_agilF;
     private javax.swing.JFormattedTextField jt_agilM;
     private javax.swing.JTextField jt_debil;
     private javax.swing.JFormattedTextField jt_fuerza;
     private javax.swing.JFormattedTextField jt_hp;
     private javax.swing.JTextField jt_nombre;
+    private javax.swing.JTree jt_personajes;
     private javax.swing.JTextField jt_poder;
+    private javax.swing.JMenuItem pm_eliminar;
+    private javax.swing.JMenuItem pm_listar;
+    private javax.swing.JMenuItem pm_modificar;
+    private javax.swing.JPopupMenu popup;
     // End of variables declaration//GEN-END:variables
-    ArrayList <Personaje> personajes = new ArrayList();
+    ArrayList<Personaje> personajes = new ArrayList();
+    DefaultMutableTreeNode nodo_seleccionado;
+    Personaje personaje_seleccionado;
 }
