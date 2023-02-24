@@ -51,7 +51,6 @@ public class Main extends javax.swing.JFrame {
         jl_lista = new javax.swing.JList<>();
         popup = new javax.swing.JPopupMenu();
         pm_listar = new javax.swing.JMenuItem();
-        pm_modificar = new javax.swing.JMenuItem();
         pm_eliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -265,10 +264,12 @@ public class Main extends javax.swing.JFrame {
         });
         popup.add(pm_listar);
 
-        pm_modificar.setText("Modificar");
-        popup.add(pm_modificar);
-
         pm_eliminar.setText("Eliminar");
+        pm_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pm_eliminarActionPerformed(evt);
+            }
+        });
         popup.add(pm_eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -366,18 +367,22 @@ public class Main extends javax.swing.JFrame {
             DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(0);
             DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
             universo.add(nodo_personaje);
+            listMarvel.add(p);
         } else if (univ == "Capcom") {
             DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(1);
             DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
             universo.add(nodo_personaje);
+            listCapcom.add(p);
         } else if (univ == "Midway") {
             DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(2);
             DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
             universo.add(nodo_personaje);
+            listMidway.add(p);
         } else if (univ == "DC") {
             DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(3);
             DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(p);
             universo.add(nodo_personaje);
+            listDC.add(p);
         }
 
         m.reload();
@@ -406,6 +411,7 @@ public class Main extends javax.swing.JFrame {
         jt_personajes.setSelectionRow(row);
         Object obj = jt_personajes.getSelectionPath().getLastPathComponent();
         nodo_seleccionado = (DefaultMutableTreeNode) obj;
+
     }//GEN-LAST:event_jt_personajesMouseClicked
 
     private void pm_listarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_listarMouseClicked
@@ -417,30 +423,91 @@ public class Main extends javax.swing.JFrame {
 //        jt_personajes.setSelectionRow(row);
 //        Object obj = jt_personajes.getSelectionPath().getLastPathComponent();
 //        nodo_seleccionado = (DefaultMutableTreeNode) obj;
-
         if (nodo_seleccionado.getUserObject() instanceof Personaje) {
             System.out.println("Personaje");
         } else if (!nodo_seleccionado.isRoot()) {
             modelo.addElement("damn");
         }
-        
+
         jl_lista.setModel(modelo);
     }//GEN-LAST:event_pm_listarMouseClicked
 
     private void pm_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_listarActionPerformed
-//        DefaultListModel modelo = (DefaultListModel) jl_lista.getModel();
-//        DefaultTreeModel treeMod = (DefaultTreeModel) jt_personajes.getModel();
-//        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) treeMod.getRoot();
-//
-//
-//        if (nodo_seleccionado.getUserObject() instanceof Personaje) {
-//            System.out.println("Personaje");
-//        } else if (!nodo_seleccionado.isRoot()) {
-//            modelo.addElement("damn");
-//        }
-//        
-//        jl_lista.setModel(modelo);
+        DefaultListModel modelo = (DefaultListModel) jl_lista.getModel();
+        modelo.clear();
+        DefaultTreeModel treeMod = (DefaultTreeModel) jt_personajes.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) treeMod.getRoot();
+
+//        int row = jt_personajes.getClosestRowForLocation(evt.getX(), evt.getY());
+//        jt_personajes.setSelectionRow(row);
+//        Object obj = jt_personajes.getSelectionPath().getLastPathComponent();
+//        nodo_seleccionado = (DefaultMutableTreeNode) obj;
+        if (nodo_seleccionado.getUserObject() instanceof Personaje) {
+            modelo.addElement(((Personaje) nodo_seleccionado.getUserObject()).toString2());
+        } else if (!nodo_seleccionado.isRoot()) {
+            if (nodo_seleccionado == raiz.getChildAt(0)) {
+                for (int i = 0; i < listMarvel.size(); i++) {
+                    modelo.addElement(listMarvel.get(i).toString2());
+                }
+            } else if (nodo_seleccionado == raiz.getChildAt(1)) {
+                for (int i = 0; i < listCapcom.size(); i++) {
+                    modelo.addElement(listCapcom.get(i).toString2());
+                }
+            } else if (nodo_seleccionado == raiz.getChildAt(2)) {
+                for (int i = 0; i < listMidway.size(); i++) {
+                    modelo.addElement(listMidway.get(i).toString2());
+                }
+            } else if (nodo_seleccionado == raiz.getChildAt(3)) {
+                for (int i = 0; i < listDC.size(); i++) {
+                    modelo.addElement(listDC.get(i).toString2());
+                }
+            }
+        }
+
+        jl_lista.setModel(modelo);
     }//GEN-LAST:event_pm_listarActionPerformed
+
+    private void pm_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_eliminarActionPerformed
+        DefaultListModel modelo = (DefaultListModel) jl_lista.getModel();
+        DefaultTreeModel treeMod = (DefaultTreeModel) jt_personajes.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) treeMod.getRoot();
+
+        if (nodo_seleccionado.getUserObject() instanceof Personaje) {
+            personajes.remove((Personaje)nodo_seleccionado.getUserObject());
+            System.out.println(personajes);
+            refreshTree();
+        }
+    }//GEN-LAST:event_pm_eliminarActionPerformed
+
+    public void refreshTree() {
+        DefaultTreeModel m = (DefaultTreeModel) jt_personajes.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+
+        for (int i = 0; i < personajes.size(); i++) {
+            String univ = personajes.get(i).getUniverso();
+
+            if (univ == "Marvel") {
+                DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(0);
+                universo.removeAllChildren();
+                DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(personajes.get(i));
+                universo.add(nodo_personaje);
+            } else if (univ == "Capcom") {
+                DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(1);
+                DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(personajes.get(i));
+                universo.add(nodo_personaje);
+            } else if (univ == "Midway") {
+                DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(2);
+                DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(personajes.get(i));
+                universo.add(nodo_personaje);
+            } else if (univ == "DC") {
+                DefaultMutableTreeNode universo = (DefaultMutableTreeNode) raiz.getChildAt(3);
+                DefaultMutableTreeNode nodo_personaje = new DefaultMutableTreeNode(personajes.get(i));
+                universo.add(nodo_personaje);
+            }
+
+            m.reload();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -510,10 +577,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jt_poder;
     private javax.swing.JMenuItem pm_eliminar;
     private javax.swing.JMenuItem pm_listar;
-    private javax.swing.JMenuItem pm_modificar;
     private javax.swing.JPopupMenu popup;
     // End of variables declaration//GEN-END:variables
     ArrayList<Personaje> personajes = new ArrayList();
+    ArrayList<Personaje> listMarvel = new ArrayList();
+    ArrayList<Personaje> listCapcom = new ArrayList();
+    ArrayList<Personaje> listMidway = new ArrayList();
+    ArrayList<Personaje> listDC = new ArrayList();
     DefaultMutableTreeNode nodo_seleccionado;
-    Personaje personaje_seleccionado;
 }

@@ -92,6 +92,13 @@ public class Personaje {
     }
 
 
+    public String toString2() {
+        return nombre +"\n" + "  Poder -> " + poder + "\n" + "  Debilidad -> " + debilidad + "\n" + 
+                "  Fuerza -> " + fuerza + "\n"+ "  Agilidad fisica -> " + agilidad_fisica + "\n" + "  Agilidad mental -> " + agilidad_mental +"\n"+ "  HP ->" + hp + "\n\n";
+    }
+
+    
+
     
     
 }
