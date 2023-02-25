@@ -388,10 +388,13 @@ public class Main extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane5.setViewportView(jTextArea1);
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 255));
         jButton1.setText("Resistencia");
 
+        jButton2.setBackground(new java.awt.Color(102, 102, 255));
         jButton2.setText("Mental");
 
+        jButton3.setBackground(new java.awt.Color(102, 102, 255));
         jButton3.setText("Fisico");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -403,7 +406,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(90, 90, 90)
+                        .addGap(101, 101, 101)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3))
