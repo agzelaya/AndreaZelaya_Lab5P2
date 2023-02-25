@@ -63,6 +63,13 @@ public class Main extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jl_player2 = new javax.swing.JList<>();
         jb_batalla = new javax.swing.JButton();
+        jd_batalla = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         bt_agregar = new javax.swing.JButton();
@@ -316,6 +323,11 @@ public class Main extends javax.swing.JFrame {
         jb_batalla.setBackground(new java.awt.Color(102, 102, 255));
         jb_batalla.setForeground(new java.awt.Color(255, 255, 255));
         jb_batalla.setText("BATALLA");
+        jb_batalla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_batallaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -368,6 +380,58 @@ public class Main extends javax.swing.JFrame {
         jd_charSelectLayout.setVerticalGroup(
             jd_charSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 51, 51));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane5.setViewportView(jTextArea1);
+
+        jButton1.setText("Resistencia");
+
+        jButton2.setText("Mental");
+
+        jButton3.setText("Fisico");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(90, 90, 90)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(38, 38, 38))
+        );
+
+        javax.swing.GroupLayout jd_batallaLayout = new javax.swing.GroupLayout(jd_batalla.getContentPane());
+        jd_batalla.getContentPane().setLayout(jd_batallaLayout);
+        jd_batallaLayout.setHorizontalGroup(
+            jd_batallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_batallaLayout.setVerticalGroup(
+            jd_batallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -576,7 +640,7 @@ public class Main extends javax.swing.JFrame {
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) treeMod.getRoot();
 
         if (nodo_seleccionado.getUserObject() instanceof Personaje) {
-            personajes.remove((Personaje)nodo_seleccionado.getUserObject());
+            personajes.remove((Personaje) nodo_seleccionado.getUserObject());
             System.out.println(personajes);
             refreshTree();
         }
@@ -591,50 +655,76 @@ public class Main extends javax.swing.JFrame {
     private void cb_player1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_player1ItemStateChanged
         DefaultListModel modelo = (DefaultListModel) jl_player1.getModel();
         modelo.clear();
-        
-            if (cb_player1.getSelectedItem() == "Marvel") {
-                for (int i = 0; i < listMarvel.size(); i++) {
-                    modelo.addElement(listMarvel.get(i).toString2());
-                }
-            } else if (cb_player1.getSelectedItem() == "Capcom") {
-                for (int i = 0; i < listCapcom.size(); i++) {
-                    modelo.addElement(listCapcom.get(i).toString2());
-                }
-            } else if (cb_player1.getSelectedItem() == "Midway") {
-                for (int i = 0; i < listMidway.size(); i++) {
-                    modelo.addElement(listMidway.get(i).toString2());
-                }
-            } else if (cb_player1.getSelectedItem() == "DC") {
-                for (int i = 0; i < listDC.size(); i++) {
-                    modelo.addElement(listDC.get(i).toString2());
-                }
+
+        if (cb_player1.getSelectedItem() == "Marvel") {
+            for (int i = 0; i < listMarvel.size(); i++) {
+                modelo.addElement(listMarvel.get(i).toString2());
             }
+        } else if (cb_player1.getSelectedItem() == "Capcom") {
+            for (int i = 0; i < listCapcom.size(); i++) {
+                modelo.addElement(listCapcom.get(i).toString2());
+            }
+        } else if (cb_player1.getSelectedItem() == "Midway") {
+            for (int i = 0; i < listMidway.size(); i++) {
+                modelo.addElement(listMidway.get(i).toString2());
+            }
+        } else if (cb_player1.getSelectedItem() == "DC") {
+            for (int i = 0; i < listDC.size(); i++) {
+                modelo.addElement(listDC.get(i).toString2());
+            }
+        }
         jl_player1.setModel(modelo);
     }//GEN-LAST:event_cb_player1ItemStateChanged
 
     private void cb_player2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_player2ItemStateChanged
         DefaultListModel modelo = (DefaultListModel) jl_player2.getModel();
         modelo.clear();
-        
-            if (cb_player2.getSelectedItem() == "Marvel") {
-                for (int i = 0; i < listMarvel.size(); i++) {
-                    modelo.addElement(listMarvel.get(i).toString2());
-                }
-            } else if (cb_player2.getSelectedItem() == "Capcom") {
-                for (int i = 0; i < listCapcom.size(); i++) {
-                    modelo.addElement(listCapcom.get(i).toString2());
-                }
-            } else if (cb_player2.getSelectedItem() == "Midway") {
-                for (int i = 0; i < listMidway.size(); i++) {
-                    modelo.addElement(listMidway.get(i).toString2());
-                }
-            } else if (cb_player2.getSelectedItem() == "DC") {
-                for (int i = 0; i < listDC.size(); i++) {
-                    modelo.addElement(listDC.get(i).toString2());
-                }
+
+        if (cb_player2.getSelectedItem() == "Marvel") {
+            for (int i = 0; i < listMarvel.size(); i++) {
+                modelo.addElement(listMarvel.get(i).toString2());
             }
+        } else if (cb_player2.getSelectedItem() == "Capcom") {
+            for (int i = 0; i < listCapcom.size(); i++) {
+                modelo.addElement(listCapcom.get(i).toString2());
+            }
+        } else if (cb_player2.getSelectedItem() == "Midway") {
+            for (int i = 0; i < listMidway.size(); i++) {
+                modelo.addElement(listMidway.get(i).toString2());
+            }
+        } else if (cb_player2.getSelectedItem() == "DC") {
+            for (int i = 0; i < listDC.size(); i++) {
+                modelo.addElement(listDC.get(i).toString2());
+            }
+        }
         jl_player2.setModel(modelo);
     }//GEN-LAST:event_cb_player2ItemStateChanged
+
+    private void jb_batallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_batallaActionPerformed
+        if (cb_player1.getSelectedItem() == "Marvel") {
+            p1 = listMarvel.get(jl_player1.getSelectedIndex());
+        } else if (cb_player1.getSelectedItem() == "Capcom") {
+            p1 = listCapcom.get(jl_player1.getSelectedIndex());
+        } else if (cb_player1.getSelectedItem() == "Midway") {
+            p1 = listMidway.get(jl_player1.getSelectedIndex());
+        } else if (cb_player1.getSelectedItem() == "DC") {
+            p1 = listDC.get(jl_player1.getSelectedIndex());
+        }
+
+        if (cb_player2.getSelectedItem() == "Marvel") {
+            p2 = listMarvel.get(jl_player2.getSelectedIndex());
+        } else if (cb_player2.getSelectedItem() == "Capcom") {
+            p2 = listCapcom.get(jl_player2.getSelectedIndex());
+        } else if (cb_player2.getSelectedItem() == "Midway") {
+            p2 = listMidway.get(jl_player2.getSelectedIndex());
+        } else if (cb_player2.getSelectedItem() == "DC") {
+            p2 = listDC.get(jl_player2.getSelectedIndex());
+        }
+        
+        jd_batalla.pack();
+        jd_batalla.setLocationRelativeTo(this);
+        jd_batalla.setVisible(true);
+    }//GEN-LAST:event_jb_batallaActionPerformed
 
     public void refreshTree() {
         DefaultTreeModel m = (DefaultTreeModel) jt_personajes.getModel();
@@ -709,6 +799,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_player1;
     private javax.swing.JComboBox<String> cb_player2;
     private javax.swing.JComboBox<String> cb_universo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -724,11 +817,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jb_batalla;
+    private javax.swing.JDialog jd_batalla;
     private javax.swing.JDialog jd_charSelect;
     private javax.swing.JDialog jd_listar;
     private javax.swing.JFrame jf_agregar;
@@ -752,5 +849,7 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Personaje> listCapcom = new ArrayList();
     ArrayList<Personaje> listMidway = new ArrayList();
     ArrayList<Personaje> listDC = new ArrayList();
+    Personaje p1;
+    Personaje p2;
     DefaultMutableTreeNode nodo_seleccionado;
 }
